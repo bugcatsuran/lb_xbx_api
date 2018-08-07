@@ -1,0 +1,36 @@
+{
+  "name": "lb_xbx_api",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa",
+    "node",
+    "mongodb"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bugcatsuran/lb_xbx_api.git"
+  },
+  "author": "bugcatsuran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bugcatsuran/lb_xbx_api/issues"
+  },
+  "homepage": "https://github.com/bugcatsuran/lb_xbx_api#readme",
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^2.0.1",
+    "koa-router": "^7.1.1",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.8.1"
+  }
+}
