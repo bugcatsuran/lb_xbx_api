@@ -3,7 +3,7 @@ const router = new Router({
   prefix: '/v1',
 });
 
-router.get('/drinks', async (ctx) =>{
+router.get('/goods/list', async (ctx) =>{
   const { page,num } = ctx.request.query;
   ctx.body = '我是goods';
 })
