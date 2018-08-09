@@ -1,23 +1,22 @@
-const Koa = require('koa');
-const Router = require('koa-router');
-const indexRouter = require('./routes/index');
-const { name, version } = require('./package.json');
+const Koa = require('koa')
+const Router = require('koa-router')
+const goodsRouter = require('./routes/goods')
+const indexRouter = require('./routes/index')
+require('./model/base')
 
 
 
 
-
-const app = new Koa();
-const router = new Router();
-
+const app = new Koa()
+const router = new Router()
 
 
 
-router.get('/version', (ctx) => {
-  ctx.body = `${name}: ${version}`;
-});
 
-app.use(router.routes()).use(router.allowedMethods());
-app.use(indexRouter.routes());
+app.use(indexRouter.routes())
+app.use(goodsRouter.routes())
+app.use(router.allowedMethods());
 
-app.listen(3000);
+
+
+app.listen(8000)
