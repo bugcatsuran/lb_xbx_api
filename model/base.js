@@ -15,5 +15,5 @@ db.on('error', (error) => {
 });
 
 db.once('open', () => {
-  console.log('Mongodb connect success')
+  console.log('Mongodb 连接成功')
 });
