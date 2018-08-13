@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/bugcatsuran/lb_xbx_api#readme",
   "dependencies": {
+    "config": "^1.30.0",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-logger": "^2.0.1",
