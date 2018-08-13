@@ -1,18 +1,14 @@
 {
   "server": {
-    "port": 3033
+    "port": 8000
   },
 
   "mongodb": {
-    "json": {
-        "dbUrl": "mongodb://localhost:27017/",
-        "dbUser": "",
-        "dbPassword": "",
-        "dbName": "mini-bar",
-        "dbCollection": {
-            "goods": "goods",
-            "user": "user"
-        }
+    "dbUrl": "mongodb://localhost:27017/",
+    "dbName": "mini-bar",
+    "dbCollection": {
+        "goods": "goods",
+        "user": "user"
     }
   }
 }

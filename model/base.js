@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose')
 
-const dbName = 'mongodb://localhost/xbx'
+const dbName = 'mongodb://localhost/mini-bar'
 
 mongoose.connect(dbName)
 

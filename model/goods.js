@@ -1,9 +1,12 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 const goodsScheme = require('../schema/goods')
+const config = require('config')
+const { goodsDb } = config.get('mongodb.dbCollection.goods');
 
 
-const goodsModel = mongoose.model('goods', goodsScheme, 'goods');
+ 
+const goodsModel = mongoose.model('goods', goodsScheme, 'goodsDb');
 
 
 class Goods {
@@ -14,16 +17,22 @@ class Goods {
   async getGoodsList({ page = 1, num = 10 }) {
     const pageIndex = Number(page);
     const pageNum = Number(num);
-    let result = {};
-    if (pageIndex === 1) {
-      result = await this.model.aggregate().sample(pageNum);
-    } else {
-      result = await this.model.find()
-        .sort({ _id: -1 })
-        .skip((pageIndex - 1) * pageNum)
-        .limit(pageNum);
+    const result = await this.model.find()
+    .sort({ _id: -1 })
+    .skip((pageIndex - 1) * pageNum)
+    .limit(pageNum)
+    return result
+  }
+
+  async addGoods(param) {
+    let result = ''
+    if(!param.title) {
+      result = 'goods title undefined'
+      return
     }
-    return result;
+    // console.log(param,6666666666666666)
+    // db.goodsDb.insert(param)
+    // result = 'add success'
   }
 }
 
