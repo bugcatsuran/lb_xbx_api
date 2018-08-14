@@ -28,11 +28,13 @@ class Goods {
     let result = ''
     if(!param.title) {
       result = 'goods title undefined'
-      return
+      console.log(6666666666666666666666666666666666666)
+      return result
     }
-    // console.log(param,6666666666666666)
-    // db.goodsDb.insert(param)
-    // result = 'add success'
+    console.log(param,6666666666666666)
+    db.goodsDb.insert(param)
+    result = 'add success'
+    
   }
 }
 

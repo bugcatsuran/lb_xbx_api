@@ -12,8 +12,6 @@ router.get('/goods/list', async (ctx) =>{
 })
 
 router.post('/goods/add', async (ctx) =>{
-  console.log(ctx.request.body,666)
-  return
   const res = await goodsModel.addGoods(ctx.request.body);
   ctx.body = res;
 })
