@@ -1,13 +1,10 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
-const goodsScheme = require('../schema/goods')
+const goodsSchema = require('../schema/goods')
 const config = require('config')
 const { goodsDb } = config.get('mongodb.dbCollection.goods');
 
-
- 
-const goodsModel = mongoose.model('goods', goodsScheme, 'goodsDb');
-
+const goodsModel = mongoose.model('goods', goodsSchema, 'goodsDb');
 
 class Goods {
   constructor(model) {
@@ -15,26 +12,44 @@ class Goods {
   }
 
   async getGoodsList({ page = 1, num = 10 }) {
+    let result = {}
     const pageIndex = Number(page);
     const pageNum = Number(num);
-    const result = await this.model.find()
-    .sort({ _id: -1 })
-    .skip((pageIndex - 1) * pageNum)
-    .limit(pageNum)
+    result.data = await this.model.find()
+      .sort({ _id: -1 })
+      .skip((pageIndex - 1) * pageNum)
+      .limit(pageNum)
     return result
   }
 
-  async addGoods(param) {
-    let result = ''
-    if(!param.title) {
-      result = 'goods title undefined'
-      console.log(6666666666666666666666666666666666666)
+  async updateOne(param) {
+    let result = {}
+    if (!param.title) {
+      result.data = 'please input goods title'
+      result.code = -100
       return result
     }
-    console.log(param,6666666666666666)
-    db.goodsDb.insert(param)
-    result = 'add success'
-    
+    if (param._id) {
+      const res = await this.model.updateOne(
+        { _id: id },
+        param,
+        { new: true },
+      )
+      result.data = 'add success'
+      result.code = 200
+    } else {
+      const res = await this.model.create({
+        ...param
+      })
+      result.data = 'add success'
+      result.code = 200
+    }
+  }
+
+  async delete(param) {
+    let result = {}
+    result.data = 'delete success'
+    result.code = 200
   }
 }
 
