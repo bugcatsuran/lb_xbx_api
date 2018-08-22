@@ -11,7 +11,7 @@ class Goods {
     this.model = model;
   }
 
-  async getGoodsList({ page = 1, num = 10 }) {
+  async getGoodsList({ page = 1, num = 100 }) {
     let result = {}
     const pageIndex = Number(page);
     const pageNum = Number(num);
@@ -35,14 +35,16 @@ class Goods {
         param,
         { new: true },
       )
-      result.data = 'add success'
+      result.data = 'update success'
       result.code = 200
+      return result
     } else {
       const res = await this.model.create({
         ...param
       })
       result.data = 'add success'
       result.code = 200
+      return result
     }
   }
 
