@@ -24,7 +24,7 @@ class Goods {
         _id: item._id,
         title: item.title,
         img: item.img,
-        discountPrice: item.discountPrice ? item.price.toJSON()['$numberDecimal'] : null,
+        discountPrice: item.discountPrice ? item.discountPrice.toJSON()['$numberDecimal'] : null,
         price: item.price ? item.price.toJSON()['$numberDecimal'] : null,
         stock: item.stock
       }
@@ -42,7 +42,7 @@ class Goods {
     }
     if (param._id) {
       const res = await this.model.updateOne(
-        { _id: id },
+        { _id: param._id },
         param,
         { new: true },
       )
