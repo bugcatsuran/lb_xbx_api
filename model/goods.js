@@ -11,14 +11,25 @@ class Goods {
     this.model = model;
   }
 
-  async getGoodsList({ page = 1, num = 100 }) {
+  async getGoodsList({ page = 1, num = 30 }) {
     let result = {}
     const pageIndex = Number(page);
     const pageNum = Number(num);
-    result.data = await this.model.find()
+    const data = await this.model.find()
       .sort({ _id: -1 })
       .skip((pageIndex - 1) * pageNum)
       .limit(pageNum)
+    result.data = data.map((item) => {
+      let ele = {
+        _id: item._id,
+        title: item.title,
+        img: item.img,
+        discountPrice: item.discountPrice ? item.price.toJSON()['$numberDecimal'] : null,
+        price: item.price ? item.price.toJSON()['$numberDecimal'] : null,
+        stock: item.stock
+      }
+      return ele
+    })
     return result
   }
 

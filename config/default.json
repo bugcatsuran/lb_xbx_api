@@ -2,13 +2,12 @@
   "server": {
     "port": 8000
   },
-
   "mongodb": {
     "dbUrl": "mongodb://localhost:27017/",
     "dbName": "mini-bar",
     "dbCollection": {
-        "goods": "goods",
-        "user": "user"
+      "goods": "goods",
+      "user": "user"
     }
   }
 }
