@@ -23,7 +23,6 @@ class Goods {
     let filter = {};
 
     if (Number(type)) { filter.type = Number(type) };
-    console.log(filter)
 
     const data = await this.model.find(filter)
       .sort({ type: 1 })
