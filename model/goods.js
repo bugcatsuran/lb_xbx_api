@@ -4,21 +4,32 @@ const goodsSchema = require('../schema/goods')
 const config = require('config')
 const { goodsDb } = config.get('mongodb.dbCollection.goods');
 
+
 const goodsModel = mongoose.model('goods', goodsSchema, 'goodsDb');
 
+
 class Goods {
+
   constructor(model) {
     this.model = model;
   }
 
-  async getGoodsList({ page = 1, num = 30 }) {
+
+
+  async getGoodsList({ type = 0, page = 1, num = 10 }) {
+
     let result = {}
-    const pageIndex = Number(page);
-    const pageNum = Number(num);
-    const data = await this.model.find()
-      .sort({ _id: -1 })
-      .skip((pageIndex - 1) * pageNum)
-      .limit(pageNum)
+
+    let filter = {};
+
+    if (Number(type)) { filter.type = Number(type) };
+    console.log(filter)
+
+    const data = await this.model.find(filter)
+      .sort({ type: 1 })
+      .skip((page - 1) * num)
+      .limit(Number(num))
+
     result.data = data.map((item) => {
       let ele = {
         _id: item._id,
@@ -31,16 +42,22 @@ class Goods {
       }
       return ele
     })
+
     return result
   }
 
+
+
   async updateOne(param) {
+
     let result = {}
+
     if (!param.title) {
       result.data = 'please input goods title'
       result.code = -100
       return result
     }
+
     if (param._id) {
       const res = await this.model.updateOne(
         { _id: param._id },
@@ -50,7 +67,9 @@ class Goods {
       result.data = 'update success'
       result.code = 200
       return result
-    } else {
+    }
+
+    else {
       const res = await this.model.create({
         ...param
       })
@@ -58,13 +77,19 @@ class Goods {
       result.code = 200
       return result
     }
+
   }
+
+
 
   async delete(param) {
     let result = {}
     result.data = 'delete success'
     result.code = 200
   }
+
+
 }
+
 
 module.exports = new Goods(goodsModel);

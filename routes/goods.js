@@ -6,8 +6,8 @@ const router = new Router({
 });
 
 router.get('/goods/list', async (ctx) => {
-  const { page, num } = ctx.request.query;
-  const list = await goodsModel.getGoodsList({ num, page });
+  const { type, page, num } = ctx.request.query;
+  const list = await goodsModel.getGoodsList({ type, page, num });
   ctx.body = list;
 })
 
