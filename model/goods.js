@@ -24,6 +24,7 @@ class Goods {
         _id: item._id,
         title: item.title,
         img: item.img,
+        type: item.type,
         discountPrice: item.discountPrice ? item.discountPrice.toJSON()['$numberDecimal'] : null,
         price: item.price ? item.price.toJSON()['$numberDecimal'] : null,
         stock: item.stock
