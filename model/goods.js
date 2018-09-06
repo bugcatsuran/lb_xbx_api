@@ -76,7 +76,7 @@ class Goods {
       const res = await this.model.create({
         ...param
       })
-      result.data = 'add success'
+      result.data = res
       result.code = 200
       return result
     }
