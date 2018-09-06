@@ -29,6 +29,8 @@ class Goods {
       .skip((page - 1) * num)
       .limit(Number(num))
 
+    const total = await this.model.count(filter);
+
     result.data = data.map((item) => {
       let ele = {
         _id: item._id,
@@ -41,6 +43,8 @@ class Goods {
       }
       return ele
     })
+
+    result.total = total;
 
     return result
   }
