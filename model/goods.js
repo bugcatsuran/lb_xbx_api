@@ -25,7 +25,7 @@ class Goods {
     if (Number(type)) { filter.type = Number(type) };
 
     const data = await this.model.find(filter)
-      .sort({ type: 1 })
+      .sort({ type: 1, _id: -1 })
       .skip((page - 1) * num)
       .limit(Number(num))
 
@@ -94,6 +94,8 @@ class Goods {
       result.code = -100
       return result
     }
+
+    const res = await this.model.deleteOne({ _id: param.id });
 
     result.mes = `deleted successs`;
     result.id = param.id;
