@@ -17,8 +17,8 @@ router.post('/goods/update', async (ctx) => {
 })
 
 router.post('/goods/delete', async (ctx) => {
-  const { page, num } = ctx.request.query;
-  ctx.body = '删除good';
+  const res = await goodsModel.delete(ctx.request.body);
+  ctx.body = res;
 })
 
 router.post('/goods/detail', async (ctx) => {

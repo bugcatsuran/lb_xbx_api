@@ -86,11 +86,21 @@ class Goods {
 
 
   async delete(param) {
-    let result = {}
-    result.data = 'delete success'
-    result.code = 200
-  }
 
+    let result = {}
+
+    if (!param.id) {
+      result.data = 'id is null'
+      result.code = -100
+      return result
+    }
+
+    result.mes = `deleted successs`;
+    result.id = param.id;
+    result.code = 200;
+
+    return result
+  }
 
 }
 
